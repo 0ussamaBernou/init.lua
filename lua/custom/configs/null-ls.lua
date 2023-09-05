@@ -7,14 +7,18 @@ local lint = null_ls.builtins.diagnostics
 local opts = {
 	sources = {
 		formatting.deno_fmt, -- choosed deno for ts/js files cuz its very fast!
-		formatting.prettier.with({ filetypes = {
-			"html",
-			"markdown",
-			"css",
-		} }), -- so prettier works only on these filetypes
+		formatting.prettier.with({
+			filetypes = {
+				"html",
+				"markdown",
+				"css",
+			},
+		}), -- so prettier works only on these filetypes
 
 		-- c/cpp formatter
 		formatting.clang_format,
+
+		-- lua formatter
 		formatting.stylua,
 
 		-- python formatter
