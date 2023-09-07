@@ -502,8 +502,9 @@ mason_lspconfig.setup_handlers({
 	end,
 })
 
--- vim.api.nvim_create_user_command("RunPython", function ()
---   local buffer = vim.api.nvim_buf_get_name(0)
+-- vim.api.nvim_create_user_command("RunPython", function()
+-- 	local buffer = vim.api.nvim_buf_get_name(0)
+-- 	vim.cmd.python(buffer)
 -- end)
 
 -- [[ Configure nvim-cmp ]]
@@ -617,3 +618,4 @@ vim.opt.smartindent = true
 vim.opt.swapfile = false
 vim.opt.backup = false
 vim.o.autochdir = true
+vim.wo.relativenumber = true
