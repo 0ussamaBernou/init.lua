@@ -155,18 +155,30 @@ require("lazy").setup({
 	{
 		-- Theme inspired by Atom
 		"navarasu/onedark.nvim",
-		-- priority = 1000,
-		-- config = function()
-		-- 	vim.cmd.colorscheme("onedark")
-		-- end,
+		priority = 1000,
+		opts = {
+			style = "deep", -- Default theme style. Choose between 'dark', 'darker', 'cool', 'deep', 'warm', 'warmer' and 'light'
+			term_colors = true, -- Change terminal color as per the selected theme style
+			-- toggle theme style ---
+			toggle_style_key = "<leader>ts", -- keybind to toggle theme style. Leave it nil to disable it, or set it to a string, for example "<leader>ts"
+			toggle_style_list = { "dark", "darker", "cool", "deep", "warm", "warmer", "light" }, -- List of style
+		},
+		config = function()
+			vim.o.background = "dark" -- or "light" for light mode
+			vim.cmd.colorscheme("onedark")
+		end,
 	},
 
 	{
 		"ellisonleao/gruvbox.nvim",
 		-- priority = 1000,
+		opts = {
+			terminal_colors = true, -- add neovim terminal colors
+			contrast = "hard", -- can be "hard", "soft" or empty string
+		},
 
 		-- config = function()
-		-- 	vim.o.background = "dark" -- or "light" for light mode
+		-- vim.o.background = "dark", -- or "light" for light mode
 		-- 	vim.cmd.colorscheme("gruvbox")
 		-- end,
 	},
@@ -179,7 +191,7 @@ require("lazy").setup({
 		--
 		config = function()
 			vim.o.background = "dark" -- or "light" for light mode
-			vim.cmd.colorscheme("oxocarbon")
+			-- vim.cmd.colorscheme("oxocarbon")
 		end,
 	},
 
