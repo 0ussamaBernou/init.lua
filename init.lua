@@ -157,7 +157,7 @@ require("lazy").setup({
 		"navarasu/onedark.nvim",
 		priority = 1000,
 		opts = {
-			style = "deep", -- Default theme style. Choose between 'dark', 'darker', 'cool', 'deep', 'warm', 'warmer' and 'light'
+			style = "darker", -- Default theme style. Choose between 'dark', 'darker', 'cool', 'deep', 'warm', 'warmer' and 'light'
 			term_colors = true, -- Change terminal color as per the selected theme style
 			-- toggle theme style ---
 			toggle_style_key = "<leader>ts", -- keybind to toggle theme style. Leave it nil to disable it, or set it to a string, for example "<leader>ts"
@@ -184,6 +184,7 @@ require("lazy").setup({
 	},
 	{
 		"nyoom-engineering/oxocarbon.nvim",
+		priority = 1000,
 		-- Add in any other configuration;
 		--   event = foo,
 		--   config = bar
@@ -202,7 +203,7 @@ require("lazy").setup({
 		opts = {
 			options = {
 				icons_enabled = false,
-				theme = "onedark",
+				theme = "auto",
 				component_separators = "|",
 				section_separators = "",
 			},

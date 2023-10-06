@@ -1,0 +1,20 @@
+snippet im
+	import (
+	    ${0:module} 
+	)
+
+snippet Im
+	import "${0:module}"
+
+snippet main
+	
+	package main
+
+	import (
+	    "fmt"
+	    ${0:module} 
+	)
+
+	func main() {
+	    ${1:body}
+	}
