@@ -23,6 +23,7 @@ local opts = {
 
 		-- python formatter
 		formatting.black,
+		formatting.gofmt,
 
 		formatting.beautysh,
 		lint.shellcheck,
