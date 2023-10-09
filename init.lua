@@ -165,7 +165,7 @@ require("lazy").setup({
 		},
 		config = function()
 			vim.o.background = "dark" -- or "light" for light mode
-			vim.cmd.colorscheme("onedark")
+			-- vim.cmd.colorscheme("onedark")
 		end,
 	},
 
@@ -177,10 +177,10 @@ require("lazy").setup({
 			contrast = "hard", -- can be "hard", "soft" or empty string
 		},
 
-		-- config = function()
-		-- vim.o.background = "dark", -- or "light" for light mode
-		-- 	vim.cmd.colorscheme("gruvbox")
-		-- end,
+		config = function()
+			vim.o.background = "dark" -- or "light" for light mode
+			vim.cmd.colorscheme("gruvbox")
+		end,
 	},
 	{
 		"nyoom-engineering/oxocarbon.nvim",
