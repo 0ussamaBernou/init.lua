@@ -648,6 +648,7 @@ vim.keymap.set(
 	{ desc = "Create Git worktree" }
 )
 -- vim.keymap.set("n", "<Leader>sn", require("telescope").extensions.notify.notify(), silent)
+
 -- sets
 vim.opt.tabstop = 4
 vim.opt.softtabstop = 4

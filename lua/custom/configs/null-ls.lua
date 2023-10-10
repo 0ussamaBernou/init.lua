@@ -30,7 +30,7 @@ local opts = {
 
 		-- python linters
 		lint.ruff,
-		lint.mypy,
+		-- lint.mypy,
 	},
 
 	-- FORMAT ON SAVE --
