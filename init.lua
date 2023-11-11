@@ -688,31 +688,33 @@ vim.keymap.set(
 -- nnoremap <buffer> <leader>aa <cmd>ArduinoAttach<CR>
 vim.keymap.set("n", "<leader>aa", function()
 	vim.cmd("ArduinoAttach")
-end)
+end, { desc = "Attach to Arduino" })
 -- nnoremap <buffer> <leader>av <cmd>ArduinoVerify<CR>
 vim.keymap.set("n", "<leader>av", function()
 	vim.cmd("ArduinoVerify")
-end)
+end, { desc = "Verify Arduino" })
 -- nnoremap <buffer> <leader>au <cmd>ArduinoUpload<CR>
 vim.keymap.set("n", "<leader>au", function()
 	vim.cmd("ArduinoUpload")
-end)
+end, { desc = "Upload Arduino" })
 -- nnoremap <buffer> <leader>aus <cmd>ArduinoUploadAndSerial<CR>
-vim.keymap.set("n", "<leader>aus", function()
-	vim.cmd("ArduinoUploadAndSerial")
-end)
+-- vim.keymap.set("n", "<leader>aus", function()
+-- 	vim.cmd("ArduinoUploadAndSerial")
+-- end, { desc = "Upload and Serial Arduino" })
+--
 -- nnoremap <buffer> <leader>as <cmd>ArduinoSerial<CR>
 vim.keymap.set("n", "<leader>as", function()
 	vim.cmd("ArduinoSerial")
-end)
+end, { desc = "Serial Arduino" })
 -- nnoremap <buffer> <leader>ab <cmd>ArduinoChooseBoard<CR>
 vim.keymap.set("n", "<leader>ab", function()
 	vim.cmd("ArduinoChooseBoard")
-end)
+end, { desc = "Choose Arduino Board" })
 -- nnoremap <buffer> <leader>ap <cmd>ArduinoChooseProgrammer<CR>
 vim.keymap.set("n", "<leader>ap", function()
 	vim.cmd("ArduinoChooseProgrammer")
-end)
+end, { desc = "Choose Arduino Programmer" })
+
 -- sets
 vim.opt.tabstop = 4
 vim.opt.softtabstop = 4
