@@ -18,6 +18,9 @@ local opts = {
 		-- c/cpp formatter
 		formatting.clang_format,
 
+		-- arduino formatter
+		-- formatting.astyle,
+
 		-- lua formatter
 		formatting.stylua,
 
