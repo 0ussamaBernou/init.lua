@@ -109,7 +109,10 @@ require("lazy").setup({
 			{ "hrsh7th/cmp-nvim-lsp", event = "VeryLazy" },
 
 			-- Adds a number of user-friendly snippets
-			{ "rafamadriz/friendly-snippets", event = "VeryLazy" },
+			{
+				"rafamadriz/friendly-snippets",
+				-- event = "VeryLazy",
+			},
 		},
 		lazy = true,
 		event = "VeryLazy",
@@ -521,7 +524,7 @@ local servers = {
 	rust_analyzer = {},
 	tsserver = {},
 	html = { filetypes = { "html", "twig", "hbs" } },
-
+	emmet_language_server = { filetypes = { "html", "twig", "hbs", "js", "ts", "jsx", "tsx" } },
 	lua_ls = {
 		Lua = {
 			workspace = { checkThirdParty = false },
@@ -620,6 +623,22 @@ cmp.setup({
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
 
+local function arduino_status()
+	if vim.bo.filetype ~= "arduino" then
+		return ""
+	end
+	local port = vim.fn["arduino#GetPort"]()
+	local line = string.format("[%s]", vim.g.arduino_board)
+	if vim.g.arduino_programmer ~= "" then
+		line = line .. string.format(" [%s]", vim.g.arduino_programmer)
+	end
+	if port ~= 0 then
+		line = line .. string.format(" (%s:%s)", port, vim.g.arduino_serial_baud)
+	end
+	return line
+end
+arduino_status()
+
 -- My mappings
 vim.keymap.set("t", "<Esc>", "<C-\\><C-n>", { silent = true })
 vim.keymap.set("n", "<leader>f", function()
@@ -666,6 +685,34 @@ vim.keymap.set(
 )
 -- vim.keymap.set("n", "<Leader>sn", require("telescope").extensions.notify.notify(), silent)
 
+-- nnoremap <buffer> <leader>aa <cmd>ArduinoAttach<CR>
+vim.keymap.set("n", "<leader>aa", function()
+	vim.cmd("ArduinoAttach")
+end)
+-- nnoremap <buffer> <leader>av <cmd>ArduinoVerify<CR>
+vim.keymap.set("n", "<leader>av", function()
+	vim.cmd("ArduinoVerify")
+end)
+-- nnoremap <buffer> <leader>au <cmd>ArduinoUpload<CR>
+vim.keymap.set("n", "<leader>au", function()
+	vim.cmd("ArduinoUpload")
+end)
+-- nnoremap <buffer> <leader>aus <cmd>ArduinoUploadAndSerial<CR>
+vim.keymap.set("n", "<leader>aus", function()
+	vim.cmd("ArduinoUploadAndSerial")
+end)
+-- nnoremap <buffer> <leader>as <cmd>ArduinoSerial<CR>
+vim.keymap.set("n", "<leader>as", function()
+	vim.cmd("ArduinoSerial")
+end)
+-- nnoremap <buffer> <leader>ab <cmd>ArduinoChooseBoard<CR>
+vim.keymap.set("n", "<leader>ab", function()
+	vim.cmd("ArduinoChooseBoard")
+end)
+-- nnoremap <buffer> <leader>ap <cmd>ArduinoChooseProgrammer<CR>
+vim.keymap.set("n", "<leader>ap", function()
+	vim.cmd("ArduinoChooseProgrammer")
+end)
 -- sets
 vim.opt.tabstop = 4
 vim.opt.softtabstop = 4
