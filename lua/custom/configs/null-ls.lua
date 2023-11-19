@@ -35,6 +35,8 @@ local opts = {
 		-- python linters
 		lint.ruff,
 		-- lint.mypy,
+
+		-- sql formatter
 	},
 
 	-- FORMAT ON SAVE --
