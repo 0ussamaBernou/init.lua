@@ -19,6 +19,7 @@ local opts = {
 		-- c/cpp formatter
 		formatting.clang_format,
 
+		formatting.puppet_lint,
 		-- arduino formatter
 		-- formatting.astyle,
 

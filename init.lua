@@ -727,3 +727,5 @@ vim.opt.swapfile = false
 vim.opt.backup = false
 vim.o.autochdir = true
 vim.wo.relativenumber = true
+
+-- require("nvim-treesitter.install").compilers = { "clang" }
