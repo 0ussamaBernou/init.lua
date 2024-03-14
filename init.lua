@@ -102,16 +102,19 @@ require("lazy").setup({
 		"hrsh7th/nvim-cmp",
 		dependencies = {
 			-- Snippet Engine & its associated nvim-cmp source
-			{ "L3MON4D3/LuaSnip", event = "VeryLazy" },
+			{ "L3MON4D3/LuaSnip",         event = "VeryLazy" },
 			{ "saadparwaiz1/cmp_luasnip", event = "VeryLazy" },
 
 			-- Adds LSP completion capabilities
-			{ "hrsh7th/cmp-nvim-lsp", event = "VeryLazy" },
+			{ "hrsh7th/cmp-nvim-lsp",     event = "VeryLazy" },
 
 			-- Adds a number of user-friendly snippets
 			{
 				"rafamadriz/friendly-snippets",
 				-- event = "VeryLazy",
+			},
+			{
+				"Exafunction/codeium.nvim",
 			},
 		},
 		lazy = true,
@@ -119,7 +122,7 @@ require("lazy").setup({
 	},
 
 	-- Useful plugin to show you pending keybinds.
-	{ "folke/which-key.nvim", opts = {} },
+	{ "folke/which-key.nvim",  opts = {} },
 	{
 		-- Adds git related signs to the gutter, as well as utilities for managing changes
 		"lewis6991/gitsigns.nvim",
@@ -160,10 +163,10 @@ require("lazy").setup({
 		"navarasu/onedark.nvim",
 		priority = 1000,
 		opts = {
-			style = "darker", -- Default theme style. Choose between 'dark', 'darker', 'cool', 'deep', 'warm', 'warmer' and 'light'
-			term_colors = true, -- Change terminal color as per the selected theme style
+			style = "darker",                                               -- Default theme style. Choose between 'dark', 'darker', 'cool', 'deep', 'warm', 'warmer' and 'light'
+			term_colors = true,                                             -- Change terminal color as per the selected theme style
 			-- toggle theme style ---
-			toggle_style_key = "<leader>ts", -- keybind to toggle theme style. Leave it nil to disable it, or set it to a string, for example "<leader>ts"
+			toggle_style_key = "<leader>ts",                                -- keybind to toggle theme style. Leave it nil to disable it, or set it to a string, for example "<leader>ts"
 			toggle_style_list = { "dark", "darker", "cool", "deep", "warm", "warmer", "light" }, -- List of style
 		},
 		config = function()
@@ -617,6 +620,7 @@ cmp.setup({
 	sources = {
 		{ name = "nvim_lsp" },
 		{ name = "luasnip" },
+		{ name = "codeium" }
 	},
 })
 
