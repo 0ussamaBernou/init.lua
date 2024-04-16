@@ -540,6 +540,10 @@ local servers = {
 	asm_lsp = {},
 	gopls = {},
 	templ = { filetypes = { "templ" } },
+	tailwindcss = {
+		hovers = true,
+		suggestions = true,
+	},
 }
 
 -- Setup neovim lua configuration
@@ -791,4 +795,13 @@ lspconfig.tailwindcss.setup({
 	capabilities = capabilities,
 	filetypes = { "templ", "astro", "javascript", "typescript", "react" },
 	init_options = { userLanguages = { templ = "html" } },
+})
+
+lspconfig.tailwindcss.setup({
+
+	root_dir = function(fname)
+		local root_pattern =
+			require("lspconfig").util.root_pattern("tailwind.config.cjs", "tailwind.config.js", "postcss.config.js")
+		return root_pattern(fname)
+	end,
 })
