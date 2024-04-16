@@ -33,7 +33,7 @@ local opts = {
 		formatting.rustfmt,
 
 		formatting.beautysh,
-		lint.shellcheck,
+		-- lint.shellcheck,
 
 		-- python linters
 		lint.ruff,

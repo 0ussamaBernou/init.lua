@@ -102,11 +102,11 @@ require("lazy").setup({
 		"hrsh7th/nvim-cmp",
 		dependencies = {
 			-- Snippet Engine & its associated nvim-cmp source
-			{ "L3MON4D3/LuaSnip",         event = "VeryLazy" },
+			{ "L3MON4D3/LuaSnip", event = "VeryLazy" },
 			{ "saadparwaiz1/cmp_luasnip", event = "VeryLazy" },
 
 			-- Adds LSP completion capabilities
-			{ "hrsh7th/cmp-nvim-lsp",     event = "VeryLazy" },
+			{ "hrsh7th/cmp-nvim-lsp", event = "VeryLazy" },
 
 			-- Adds a number of user-friendly snippets
 			{
@@ -122,7 +122,7 @@ require("lazy").setup({
 	},
 
 	-- Useful plugin to show you pending keybinds.
-	{ "folke/which-key.nvim",  opts = {} },
+	{ "folke/which-key.nvim", opts = {} },
 	{
 		-- Adds git related signs to the gutter, as well as utilities for managing changes
 		"lewis6991/gitsigns.nvim",
@@ -163,10 +163,10 @@ require("lazy").setup({
 		"navarasu/onedark.nvim",
 		priority = 1000,
 		opts = {
-			style = "darker",                                               -- Default theme style. Choose between 'dark', 'darker', 'cool', 'deep', 'warm', 'warmer' and 'light'
-			term_colors = true,                                             -- Change terminal color as per the selected theme style
+			style = "darker", -- Default theme style. Choose between 'dark', 'darker', 'cool', 'deep', 'warm', 'warmer' and 'light'
+			term_colors = true, -- Change terminal color as per the selected theme style
 			-- toggle theme style ---
-			toggle_style_key = "<leader>ts",                                -- keybind to toggle theme style. Leave it nil to disable it, or set it to a string, for example "<leader>ts"
+			toggle_style_key = "<leader>ts", -- keybind to toggle theme style. Leave it nil to disable it, or set it to a string, for example "<leader>ts"
 			toggle_style_list = { "dark", "darker", "cool", "deep", "warm", "warmer", "light" }, -- List of style
 		},
 		config = function()
@@ -539,6 +539,7 @@ local servers = {
 	arduino_language_server = {},
 	asm_lsp = {},
 	gopls = {},
+	templ = { filetypes = { "templ" } },
 }
 
 -- Setup neovim lua configuration
@@ -620,7 +621,7 @@ cmp.setup({
 	sources = {
 		{ name = "nvim_lsp" },
 		{ name = "luasnip" },
-		{ name = "codeium" }
+		{ name = "codeium" },
 	},
 })
 
@@ -733,3 +734,61 @@ vim.o.autochdir = true
 vim.wo.relativenumber = true
 
 -- require("nvim-treesitter.install").compilers = { "clang" }
+--
+
+-- Register the language
+vim.filetype.add({
+	extension = {
+		templ = "templ",
+	},
+})
+
+-- -- Make sure we have a tree-sitter grammar for the language
+-- local treesitter_parser_config = require("nvim-treesitter.parsers").get_parser_configs()
+-- treesitter_parser_config.templ = treesitter_parser_config.templ
+-- 	or {
+-- 		install_info = {
+-- 			url = "https://github.com/vrischmann/tree-sitter-templ.git",
+-- 			files = { "src/parser.c", "src/scanner.c" },
+-- 			branch = "master",
+-- 		},
+-- 	}
+
+vim.treesitter.language.register("templ", "templ")
+vim.filetype.add({ extension = { templ = "templ" } })
+
+-- Register the LSP as a config
+-- local configs = require("lspconfig.configs")
+-- if not configs.templ then
+-- 	configs.templ = {
+-- 		default_config = {
+-- 			cmd = { "templ", "lsp" },
+-- 			filetypes = { "templ" },
+-- 			root_dir = require("lspconfig.util").root_pattern("go.mod", ".git"),
+-- 			settings = {},
+-- 		},
+-- 	}
+-- end
+
+-- html lsp setup
+local lspconfig = require("lspconfig")
+lspconfig.html.setup({
+	on_attach = on_attach,
+	capabilities = capabilities,
+	filetypes = { "html", "templ" },
+})
+
+-- htmx lsp setup
+lspconfig.htmx.setup({
+	on_attach = on_attach,
+	capabilities = capabilities,
+	filetypes = { "html", "templ" },
+})
+
+-- tailwindcss lsp setup
+lspconfig.tailwindcss.setup({
+	on_attach = on_attach,
+	capabilities = capabilities,
+	filetypes = { "templ", "astro", "javascript", "typescript", "react" },
+	init_options = { userLanguages = { templ = "html" } },
+})
