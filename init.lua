@@ -95,6 +95,19 @@ require("lazy").setup({
 			-- Additional lua configuration, makes nvim stuff amazing!
 			"folke/neodev.nvim",
 		},
+		config = function()
+			vim.diagnostic.config({
+				-- update_in_insert = true,
+				float = {
+					focusable = false,
+					style = "minimal",
+					border = "rounded",
+					source = "always",
+					header = "",
+					prefix = "",
+				},
+			})
+		end,
 	},
 
 	{
