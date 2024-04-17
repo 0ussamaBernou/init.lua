@@ -537,6 +537,7 @@ end
 local servers = {
 	clangd = { filetypes = { "c", "cpp", "h" } },
 	pyright = {},
+	-- black = {},
 	rust_analyzer = {},
 	tsserver = {},
 	html = { filetypes = { "html", "twig", "hbs" } },
@@ -817,4 +818,37 @@ lspconfig.tailwindcss.setup({
 			require("lspconfig").util.root_pattern("tailwind.config.cjs", "tailwind.config.js", "postcss.config.js")
 		return root_pattern(fname)
 	end,
+})
+local configs = require("lspconfig/configs")
+local util = require("lspconfig/util")
+
+local custom_attach = function(client)
+	print("Black LSP stared.")
+end
+
+if not configs.black then
+	configs.black = {
+		default_config = {
+			cmd = {
+				"black",
+			},
+			filetypes = { "python" },
+			root_dir = util.root_pattern(
+				"__init__.py",
+				"main.py",
+				"app.py",
+				"pyproject.toml",
+				"setup.py",
+				"setup.cfg",
+				"requirements.txt"
+			),
+			settings = {},
+		},
+	}
+end
+
+lspconfig.black.setup({
+	on_attach = custom_attach,
+	capabilities = capabilities,
+	filetypes = { "python" },
 })
