@@ -833,21 +833,57 @@ lspconfig.pyright.setup({
 lspconfig.pylsp.setup {
     filetypes = { "python" },
     settings = {
-        documentformatting = true,
+        documentformatting = false,
         configurationSources = { "flake8" },
-        formatCommand = { "black" }
+        -- formatCommand = { "black" }
     }
 }
 
 --Register the LSP as a config
+-- local configs = require("lspconfig.configs")
+-- if not configs.black then
+--     configs.black = {
+--         default_config = {
+--             cmd = { "black" },
+--             filetypes = { "python" },
+--             root_dir = require("lspconfig.util").root_pattern("venv", "pyproject.toml", "main.py", "app.py", ".git"),
+--             settings = {},
+--         },
+--     }
+-- end
+
 local configs = require("lspconfig.configs")
+local util = require("lspconfig.util")
+
+local custom_attach = function(client)
+    print("Black LSP stared.")
+end
+
 if not configs.black then
     configs.black = {
         default_config = {
-            cmd = { "black" },
+            cmd = {
+                "black",
+            },
             filetypes = { "python" },
-            root_dir = require("lspconfig.util").root_pattern("venv", "pyproject.toml", "main.py", "app.py", ".git"),
+            root_dir = util.root_pattern(
+                ".git",
+                "venv",
+                "__init__.py",
+                "main.py",
+                "app.py",
+                "pyproject.toml",
+                "setup.py",
+                "setup.cfg",
+                "requirements.txt"
+            ),
             settings = {},
         },
     }
 end
+
+lspconfig.black.setup({
+    on_attach = custom_attach,
+    capabilities = capabilities,
+    filetypes = { "python" },
+})
