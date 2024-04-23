@@ -1,1 +1,5 @@
-return { "ThePrimeagen/git-worktree.nvim" }
+return {
+	"ThePrimeagen/git-worktree.nvim",
+
+	lazy = true,
+}

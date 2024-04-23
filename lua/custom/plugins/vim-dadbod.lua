@@ -2,7 +2,7 @@ return {
 	"tpope/vim-dadbod",
 
 	lazy = true,
-	-- event = "VeryLazy",
+	event = "VeryLazy",
 
 	opt = true,
 	requires = {
