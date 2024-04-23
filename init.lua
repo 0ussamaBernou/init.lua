@@ -541,7 +541,9 @@ local servers = {
 	rust_analyzer = {},
 	tsserver = {},
 	html = { filetypes = { "html", "twig", "hbs" } },
-	emmet_language_server = { filetypes = { "html", "twig", "hbs", "js", "ts", "jsx", "tsx" } },
+	emmet_language_server = {
+		filetypes = { "html", "twig", "hbs", "js", "ts", "jsx", "tsx", "svelte", "astro", "templ" },
+	},
 	lua_ls = {
 		Lua = {
 			workspace = { checkThirdParty = false },
@@ -793,7 +795,7 @@ local lspconfig = require("lspconfig")
 lspconfig.html.setup({
 	on_attach = on_attach,
 	capabilities = capabilities,
-	filetypes = { "html", "templ" },
+	filetypes = { "html", "templ", "svelte", "astro", "tsx", "jsx" },
 })
 
 -- htmx lsp setup
@@ -807,7 +809,7 @@ lspconfig.htmx.setup({
 lspconfig.tailwindcss.setup({
 	on_attach = on_attach,
 	capabilities = capabilities,
-	filetypes = { "templ", "astro", "javascript", "typescript", "react" },
+	filetypes = { "templ", "astro", "javascript", "typescript", "react", "svelte" },
 	init_options = { userLanguages = { templ = "html" } },
 })
 
@@ -858,3 +860,15 @@ lspconfig.tailwindcss.setup({
 -- 	capabilities = capabilities,
 -- 	filetypes = { "python" },
 -- })
+--
+vim.filetype.add({
+	extension = {
+		svelte = "svelte",
+	},
+})
+
+vim.filetype.add({
+	extension = {
+		astro = "astro",
+	},
+})
